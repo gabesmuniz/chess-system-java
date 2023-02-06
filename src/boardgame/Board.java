@@ -29,14 +29,14 @@ public class Board {
 		}
 		return pieces[row][column];
 	}
-	
+
 	public Piece piece(Position position) {
 		if (!positionExists(position)) {
 			throw new BoardException("This position doens't exist on this board!");
 		}
 		return pieces[position.getRow()][position.getColumn()];
 	}
-	
+
 	public void placePiece(Piece piece, Position position) {
 		if (thereIsAPiece(position)) {
 			throw new BoardException("There is already a piece on position " + position);
@@ -44,29 +44,22 @@ public class Board {
 		pieces[position.getRow()][position.getColumn()] = piece;
 		piece.position = position;
 	}
-	
-	//Posição existe quando ela cabe no tabuleiro.
+
+	// Posição existe quando ela cabe no tabuleiro.
 	private boolean positionExists(int row, int column) {
 		return row >= 0 && row < rows && column >= 0 && column < columns;
 	}
-	
+
 	public boolean positionExists(Position position) {
 		return positionExists(position.getRow(), position.getColumn());
 	}
-	
-	//Se campo da peça na matriz é diferente de nulo, há uma peça.
+
+	// Se campo da peça na matriz é diferente de nulo, há uma peça.
 	public boolean thereIsAPiece(Position position) {
 		if (!positionExists(position)) {
 			throw new BoardException("This position doens't exist on this board!");
 		}
 		return piece(position) != null;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
