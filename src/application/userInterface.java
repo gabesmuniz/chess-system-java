@@ -53,7 +53,20 @@ public class userInterface {
 		for (int i = 0; i < pieces.length; i++) {
 			System.out.print((8 - i) + " ");
 			for (int j = 0; j < pieces.length; j++) {
-				printPiece(pieces[i][j]);
+				printPiece(pieces[i][j], false); // Não destaca.
+			}
+			// Quebra de linha para imprimir a próxima.
+			System.out.println();
+		}
+		System.out.println("  A B C D E F G H");
+	}
+	
+	public static void printBoard(ChessPiece pieces[][], boolean[][] possibleMoves) {
+		// Percorrer linhas e colunas imprimindo-as.
+		for (int i = 0; i < pieces.length; i++) {
+			System.out.print((8 - i) + " ");
+			for (int j = 0; j < pieces.length; j++) {
+				printPiece(pieces[i][j], possibleMoves[i][j]); // Destaca BG pois matrix tem os valores V e F
 			}
 			// Quebra de linha para imprimir a próxima.
 			System.out.println();
@@ -62,10 +75,14 @@ public class userInterface {
 	}
 
 	// Método auxiliar para imprimir cada peça.
-	private static void printPiece(ChessPiece piece) {
+	private static void printPiece(ChessPiece piece, boolean background) {
+		//Destaca o background caso seja verdadeira.
+		if (background) {
+			System.out.print(ANSI_BLUE_BACKGROUND);
+		}
 		// Se não houver peça nessa posição, imprima "-" (traço).
 		if (piece == null) {
-			System.out.print("-");
+			System.out.print("-" + ANSI_RESET);
 		} else {// Se houver, imprima a devida peça.
 			if (piece.getColor() == Color.WHITE) {
 				System.out.print(ANSI_WHITE + piece + ANSI_RESET);
