@@ -18,7 +18,7 @@ public class Program {
 		while (true) {
 			try {
 				userInterface.clearScreen();
-				userInterface.printBoard(chessMatch.getPieces());
+				userInterface.printMatch(chessMatch);
 				System.out.println();
 				System.out.print("Source: ");
 				ChessPosition source = userInterface.readChessPosition(scan);
@@ -35,10 +35,12 @@ public class Program {
 			}
 			catch (ChessException except) {
 				System.out.println(except.getMessage());
+				System.out.println("Pres KEY to continue...");
 				scan.nextLine();
 			}
 			catch (InputMismatchException except) {
 				System.out.println(except.getMessage());
+				System.out.println("Pres KEY to continue...");
 				scan.nextLine();
 			}
 					
